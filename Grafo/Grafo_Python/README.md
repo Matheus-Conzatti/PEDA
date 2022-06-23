@@ -1,0 +1,1 @@
+- Este arquivo esta sendo feito para afim de estudo em busca de entender como realiza a Estrutura de dados Grafo em Python.
