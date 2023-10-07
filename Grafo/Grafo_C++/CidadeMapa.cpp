@@ -1,7 +1,29 @@
-#include "Mapa.h"
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+constexpr int MAXNOS = 15;
+constexpr int INFINITO = 1000000;
+
+class Mapa{
+  public:
+    Mapa();
+    void addCidade(string nomeCidade);
+    void une(string cidadeA, string cidadeB, float distancia);
+    void menorCaminho(string cidadeA, string cidadeB);
+
+  private:
+    int N;
+    string cidades[MAXNOS];
+    bool adj[MAXNOS][MAXNOS];
+    float peso[MAXNOS][MAXNOS];
+    int indiceCidade(string nomeCidade);
+    float distanciaCidade(int corrente, int i);
+    bool validos(int a, int b);
+};
 
 Mapa::Mapa(){
-  //Cria uma classe com zero NOS como cidade
   N = 0;
 
   for(int i = 0; i < MAXNOS; ++i){
@@ -118,3 +140,57 @@ void Mapa::menorCaminho(string cidadeA, string cidadeB){
       cout << " -> ";
   }
 }
+
+int main(){
+  Mapa m;
+
+  m.addCidade("Arad");
+  m.addCidade("Zerind");
+  m.addCidade("Oradea");
+  m.addCidade("Sibiu");
+  m.addCidade("Timisoara");
+  m.addCidade("Lugoj");
+  m.addCidade("Mehadia");
+  m.addCidade("Dobreta");
+  m.addCidade("Craiova");
+  m.addCidade("Rimnicu");
+  m.addCidade("Fagaras");
+  m.addCidade("Pitesti");
+  m.addCidade("Bucharest");
+  m.addCidade("Giurgiu");
+
+  m.une("Arad", "Zerind", 271.0);
+  m.une("Arad", "Oradea", 310.0);
+  m.une("Oradea", "Zerind", 174.0);
+  m.une("Oradea", "Sibiu", 208.0);
+  m.une("Sibiu", "Timisoara", 342.0);
+  m.une("Sibiu", "Lugoj", 114.0);
+  m.une("Lugoj", "Mehadia", 115.0);
+  m.une("Lugoj", "Sibiu", 132.0);
+  m.une("Mehadia", "Dobreta", 221.2);
+  m.une("Mehadia", "Craiova", 185.9);
+  m.une("Mehadia", "Rimnicu", 155.0);
+  m.une("Craviova", "Fagaras", 143.0);
+  m.une("Craviova", "Mehadia", 165.0);
+  m.une("Fagaras", "Rimnicu", 136.0);
+  m.une("Fagaras", "Pitesti", 209.0);
+  m.une("Fagaras", "Bucharest", 271.0);
+  m.une("Fagaras", "Craviova", 349.0);
+  m.une("Pitesti", "Bucharest", 223.0);
+  m.une("Buchasrest", "Pitesti", 231.0);
+  m.une("Buchasrest", "Giurgiu", 102.0);
+  m.une("Rimnicu", "Fagasras", 52.3);
+
+  string cidadeA, cidadeB;
+
+  cout << "Cidade A: ";
+  getline(cin, cidadeA);
+  cout << "Cidade B: ";
+  getline(cin, cidadeB);
+  cout << endl;
+  m.menorCaminho(cidadeA, cidadeB);
+  cout << endl;
+
+  return 0;
+}
+
