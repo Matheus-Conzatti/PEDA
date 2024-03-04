@@ -68,6 +68,8 @@ float resolverExp(char x[]){
     char *poteiro;
     float num;
     No *n1, *n2, *pilha = NULL;
+    int x = 0;
+    int strtok();
 
     poteiro = strtok(x, " ");
     while (poteiro){

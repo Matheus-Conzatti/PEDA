@@ -58,8 +58,7 @@ No *ArvBin::pai(No *p){
 No *ArvBin::irmao(No *p){
     if (p == raiz)
         return nullptr;
-    else
-    {
+    else{
         if (eh_esq(p))
             return dir(pai(p));
         else
@@ -82,8 +81,7 @@ bool ArvBin::eh_dir(No *p){
 }
 
 void ArvBin::cria_no_esq(No *pai, TipoDado x){
-    if (esq(pai) == nullptr)
-    {
+    if (esq(pai) == nullptr){
         No *novono = new No;
         novono->info = x;
         novono->pai = pai;
@@ -93,8 +91,7 @@ void ArvBin::cria_no_esq(No *pai, TipoDado x){
 }
 
 void ArvBin::cria_no_dir(No *pai, TipoDado x){
-    if (dir(pai) == nullptr)
-    {
+    if (dir(pai) == nullptr){
         No *novono = new No;
         novono->info = x;
         novono->pai = pai;
@@ -106,15 +103,12 @@ void ArvBin::cria_no_dir(No *pai, TipoDado x){
 void ArvBin::adiciona(No *r, TipoDado x){
     if (x == info(r))
         cout << "Repetido!" << endl;
-    else if (x < info(r))
-    {
+    else if (x < info(r)){
         if (esq(r) == nullptr)
             cria_no_esq(r, x);
         else
             adiciona(esq(r), x);
-    }
-    else
-    {
+    }else{
         if (dir(r) == nullptr)
             cria_no_dir(r, x);
         else
@@ -123,8 +117,7 @@ void ArvBin::adiciona(No *r, TipoDado x){
 }
 
 void ArvBin::percorre(No *r){
-    if (r != nullptr)
-    {
+    if (r != nullptr){
         percorre(esq(r));
         cout << info(r) << endl; // Visitar a raiz
         percorre(dir(r));
@@ -140,8 +133,7 @@ ArvBin::~ArvBin(){
 }
 
 void ArvBin::limpa(No *r){
-    if (r != nullptr)
-    {
+    if (r != nullptr){
         percorre(esq(r));
         percorre(dir(r));
         delete r;
